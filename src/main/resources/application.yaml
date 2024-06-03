@@ -1,0 +1,27 @@
+spring:
+  docker:
+    compose:
+      enabled: true
+      lifecycle-management: start_only
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+    listener:
+      type: simple
+      simple:
+          concurrency: 3
+          max-concurrency: 10
+          prefetch: 1
+          acknowledge-mode: auto
+          default-requeue-rejected: false
+          retry:
+            enabled: true
+            max-attempts: 3
+            initial-interval: 1000
+            max-interval: 10000
+            multiplier: 1.0
+            stateless: false
